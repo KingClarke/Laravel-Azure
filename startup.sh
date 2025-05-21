@@ -2,7 +2,7 @@
 
 echo "Starting your sexy Laravel app uwu~"
 
-# Step 1: Composer install, no dev for lightness ~
+# Step 1: Composer install, no dev for lightness
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Step 2: Build your frontend assets (if you have npm and build scripts~)
@@ -12,7 +12,7 @@ if [ -f package.json ]; then
     npm run build
 fi
 
-# Step 3: Generate Laravel app key if missing~
+# Step 3: Generate Laravel app key if missing
 if [ ! -f .env ]; then
     echo "Uh-oh, no .env found! Copying from .env.example nya~"
     cp .env.example .env
