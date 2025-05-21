@@ -1,0 +1,65 @@
+.message-container {
+    overflow-y: auto;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.message-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.message-container::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+}
+
+.message-bubble {
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Make group chat other users' messages white text on dark blue background */
+.group-message-bubble {
+    background-color: #1e3a8a; /* Tailwind blue-900 */
+    color: #fff;
+}
+
+/* Make 1-on-1 chat message bubbles much bigger */
+.oneonone-message-bubble {
+    font-size: 1.35rem;
+    padding: 1.25rem 2rem;
+    border-radius: 1.25rem;
+}
+
+.oneonone-message-avatar {
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+.oneonone-message-content {
+    font-size: 1.15rem;
+}
+
+.chat-scroll-area {
+    max-height: 32rem;
+    min-height: 16rem;
+    overflow-y: auto;
+    width: 100%;
+    background: inherit;
+}
