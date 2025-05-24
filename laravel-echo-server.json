@@ -1,0 +1,28 @@
+{
+  "authHost": "https://echoid.org",
+  "authEndpoint": "/broadcasting/auth",
+  "clients": [],
+  "database": "redis",
+  "databaseConfig": {
+    "redis": {
+      "port": 48469,
+      "host": "127.0.0.1",
+      "password": "dFaAfqcWSf8NpIqtrPO"
+    },
+    "sqlite": {
+      "databasePath": "/database/laravel-echo-server.sqlite"
+    }
+  },
+  "devMode": false,
+  "host": null,
+  "port": 6001,
+  "protocol": "https",
+  "socketio": {},
+  "sslCertPath": "/home/echoidor/ssl/certs/echoid_org_e07cc_ebeb5_1779467652_e2d7ae4ea2bb9a16afbe0bae8b3f6c0b.crt",
+  "sslKeyPath": "/home/echoidor/ssl/keys/e07cc_ebeb5_437537cc7ba5370a41293296366c6de8.key",
+  "sslCertChainPath": "",
+  "allowCors": true,
+  "allowOrigin": "*",
+  "allowMethods": "GET, POST",
+  "allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN"
+}

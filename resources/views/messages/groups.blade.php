@@ -1,14 +1,14 @@
 @extends('messages.layout')
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto px-2 sm:px-4">
     <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg overflow-hidden mb-8">
-        <div class="p-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <div class="p-2 sm:p-6">
+            <h2 class="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-5V7a4 4 0 00-8 0v2a4 4 0 00-3 3.87V17a2 2 0 002 2h10a2 2 0 002-2v-2.13A4 4 0 0017 11z" />
                 </svg>
-                Your Groups
+                Group Chats
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 @forelse($groups as $group)

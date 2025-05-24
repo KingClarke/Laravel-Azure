@@ -1,58 +1,58 @@
 <x-messages.layout>
-    <div class="w-full flex justify-center">
-        <div class="w-full max-w-3xl bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-            <div class="p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
+    <div class="w-full flex justify-center px-2 sm:px-4">
+        <div class="w-full max-w-full sm:max-w-2xl md:max-w-3xl bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+            <div class="p-2 sm:p-4 md:p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2 sm:gap-3">
                         @if($user->profile_picture)
-                            <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}'s profile picture" class="h-10 w-10 rounded-full object-cover border border-gray-300 dark:border-gray-700 cursor-pointer" onclick="showUserCard({{ $user->id }})">
+                            <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}'s profile picture" class="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover border border-gray-300 dark:border-gray-700 cursor-pointer" onclick="showUserCard({{ $user->id }})">
                         @else
-                            <div class="h-10 w-10 rounded-full bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold text-lg cursor-pointer" onclick="showUserCard({{ $user->id }})">
+                            <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold text-base sm:text-lg cursor-pointer" onclick="showUserCard({{ $user->id }})">
                                 {{ strtoupper(substr($user->name, 0, 1)) }}
                             </div>
                         @endif
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                        <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                             {{ $user->name }}
                         </h2>
                     </div>
-                    <a href="{{ route('messages.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300">
+                    <a href="{{ route('messages.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300 text-sm sm:text-base">
                         Back to messages
                     </a>
                 </div>
 
-                <div class="message-container space-y-2 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-700 max-h-[700px] overflow-y-auto" id="chat-messages-container">
+                <div class="message-container space-y-2 bg-gray-50 dark:bg-gray-900 p-2 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-700 max-h-[60vh] min-h-[120px] overflow-y-auto" id="chat-messages-container">
                     @foreach($messages as $message)
-                        <div class="flex {{ $message->sender_id === auth()->id() ? 'justify-end' : 'justify-start' }} items-center gap-3">
+                        <div class="flex {{ $message->sender_id === auth()->id() ? 'justify-end' : 'justify-start' }} items-end gap-2 sm:gap-3">
                             @if($message->sender && $message->sender->profile_picture)
-                                <img src="{{ asset('storage/' . $message->sender->profile_picture) }}" alt="{{ $message->sender->name }}'s profile picture" class="h-10 w-10 rounded-full object-cover border border-gray-300 dark:border-gray-700 cursor-pointer" onclick="showUserCard({{ $message->sender->id }})">
+                                <img src="{{ asset('storage/' . $message->sender->profile_picture) }}" alt="{{ $message->sender->name }}'s profile picture" class="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover border border-gray-300 dark:border-gray-700 cursor-pointer" onclick="showUserCard({{ $message->sender->id }})">
                             @elseif($message->sender)
-                                <div class="h-10 w-10 rounded-full bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="showUserCard({{ $message->sender->id }})">
+                                <div class="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white font-bold text-base sm:text-lg cursor-pointer" onclick="showUserCard({{ $message->sender->id }})">
                                     {{ strtoupper(substr($message->sender->name, 0, 1)) }}
                                 </div>
                             @endif
-                            <div class="{{ $message->sender_id === auth()->id() ? 'bg-indigo-600 text-white' : 'bg-blue-100 dark:bg-blue-900 text-gray-900 dark:text-gray-100' }} rounded-lg px-6 py-4 max-w-[60%] break-words">
+                            <div class="{{ $message->sender_id === auth()->id() ? 'bg-indigo-600 text-white' : 'bg-blue-100 dark:bg-blue-900 text-gray-900 dark:text-gray-100' }} rounded-lg px-3 py-2 sm:px-6 sm:py-4 max-w-[90vw] sm:max-w-[80%] md:max-w-[60%] break-words">
                                 @if($message->image)
-                                    <img src="{{ asset('storage/' . $message->image) }}" alt="chat image" style="width:320px;height:320px;object-fit:cover;" class="rounded cursor-pointer mb-2" onclick="showImageModal('{{ asset('storage/' . $message->image) }}')">
+                                    <img src="{{ asset('storage/' . $message->image) }}" alt="chat image" style="width:100%;max-width:140px;height:auto;object-fit:cover;" class="rounded cursor-pointer mb-2 sm:max-w-[200px]" onclick="showImageModal('{{ asset('storage/' . $message->image) }}')">
                                 @endif
-                                <p class="text-base break-words">{{ $message->content }}</p>
+                                <p class="text-sm sm:text-base break-words">{{ $message->content }}</p>
                                 <span class="text-xs {{ $message->sender_id === auth()->id() ? 'opacity-75' : 'text-gray-600 dark:text-gray-400' }}">{{ $message->created_at->format('g:i A') }}</span>
                             </div>
                         </div>
                     @endforeach
                 </div>
 
-                <form action="{{ route('messages.store', $user) }}" method="POST" class="flex gap-2 items-center" enctype="multipart/form-data">
+                <form action="{{ route('messages.store', $user) }}" method="POST" class="flex gap-0.5 sm:gap-2 items-center mt-2" enctype="multipart/form-data">
                     @csrf
                     <input type="text" 
                            name="content" 
                            placeholder="Type your message..." 
-                           class="flex-1 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-black-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:focus:border-indigo-400 dark:focus:ring-indigo-400">
-                    <label for="image-upload" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-2xl font-bold cursor-pointer transition mr-2" title="Attach Image">
+                           class="flex-1 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-black-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:focus:border-indigo-400 dark:focus:ring-indigo-400 text-xs sm:text-base">
+                    <label for="image-upload" class="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg sm:text-2xl font-bold cursor-pointer transition mr-0.5 sm:mr-2" title="Attach Image">
                         +
                         <input id="image-upload" type="file" name="image" accept="image/*" class="hidden" onchange="this.form.submit()">
                     </label>
                     <button type="submit" 
-                            class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-2 py-1.5 sm:px-4 sm:py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs sm:text-sm text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                         Send
                     </button>
                 </form>

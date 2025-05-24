@@ -74,12 +74,13 @@ class GroupController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('chat_images', 'public');
         }
-        Message::create([
+        $message = Message::create([
             'sender_id' => Auth::id(),
             'group_id' => $group->id,
             'content' => $request->content ?? '',
             'image' => $imagePath,
         ]);
+        event(new \App\Events\GroupMessageSent($group, $message));
         return back();
     }
 }
